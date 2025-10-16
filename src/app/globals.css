@@ -1,15 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* smooth anchor scroll like the screenshots */
 html { scroll-behavior: smooth; }
 
 /* match container width feel */
 .container { max-width: 1100px; }
-
-/* subtle card shadow */
-.card { @apply rounded-2xl border bg-white shadow-sm; }
 
 /* gradient hero background */
 .hero-gradient {
