@@ -5,18 +5,23 @@
     "es2022": true,
     "node": true
   },
-  "extends": ["next/core-web-vitals"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "plugins": ["@typescript-eslint"],
   "settings": {
-    "next": {
-      "rootDir": ["./"]
-    }
+    "next": { "rootDir": ["./"] }
   },
   "rules": {
     "react/no-unescaped-entities": "off",
-    "import/no-anonymous-default-export": "off"
+    "import/no-anonymous-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   "ignorePatterns": [
     "node_modules/",
@@ -24,6 +29,7 @@
     "dist/",
     "build/",
     "coverage/",
+    "src/types/database.ts",
     "**/*.config.js",
     "**/*.config.cjs",
     "**/*.config.mjs"
