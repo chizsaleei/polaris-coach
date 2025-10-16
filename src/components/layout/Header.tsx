@@ -1,58 +1,62 @@
-import Link from 'next/link'
-import { ThemeToggle } from '@/components/ui/theme-toggle' // Make sure this path is correct
+"use client";
 
-/**
- * The main header and navigation bar for the site.
- * It's sticky, so it stays at the top as the user scrolls.
- */
-export const Header = () => {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+
+const nav = [
+  { href: "/#paths", label: "Find Your Path" },
+  { href: "/#coaches", label: "My AI Coach" },
+  { href: "/#resources", label: "Resources" },
+  { href: "/#pricing", label: "Pricing" },
+];
+
+export default function Header() {
+  const pathname = usePathname();
+
   return (
-    <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
-        {/* Logo and Brand Name */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold">🧭 Polaris</span>
-        </Link>
+    <header className="bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40 border-b">
+      <div className="container mx-auto px-4">
+        <nav className="flex h-14 items-center justify-between">
+          {/* Brand */}
+          <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border">🧭</span>
+            <span>Polaris</span>
+          </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
-          <Link
-            href="#paths"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Find Your Path
-          </Link>
-          <Link
-            href="#coaches"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            My AI Coach
-          </Link>
-          <Link
-            href="#ecosystem"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Resources
-          </Link>
-          <Link
-            href="#pricing"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Pricing
-          </Link>
+          {/* Center nav */}
+          <ul className="hidden md:flex items-center gap-8 text-sm">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-current={pathname === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Link
+              href="/auth/signin"
+              className="hidden sm:inline-flex rounded-lg border px-3 py-2 text-sm hover:bg-muted/60"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/auth/signup"
+              className="inline-flex rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:opacity-95"
+            >
+              Start Free Trial
+            </Link>
+          </div>
         </nav>
-
-        {/* Action Buttons and Theme Toggle */}
-        <div className="flex items-center gap-4">
-          <button className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors sm:inline-block">
-            Sign In
-          </button>
-          <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2 text-sm font-semibold">
-            Start Free Trial
-          </button>
-          <ThemeToggle />
-        </div>
       </div>
     </header>
-  )
+  );
 }
