@@ -1,20 +1,36 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { Moon, Sun } from "lucide-react" // Make sure to install lucide-react: npm install lucide-react
-import { useTheme } from "next-themes"
+import * as React from 'react'
+import { useTheme } from 'next-themes'
+import { Moon, Sun } from 'lucide-react'
 
+/**
+ * Small button that toggles between light/dark/system.
+ */
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme()
+  const { theme, setTheme, systemTheme } = useTheme()
+
+  // rotate through: system -> light -> dark -> system...
+  const handleToggle = () => {
+    if (theme === 'system') setTheme('light')
+    else if (theme === 'light') setTheme('dark')
+    else setTheme('system')
+  }
+
+  const effective =
+    theme === 'system' ? (systemTheme as 'light' | 'dark' | undefined) : (theme as 'light' | 'dark')
 
   return (
     <button
-      className="relative inline-flex items-center justify-center rounded-full w-10 h-10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      type="button"
+      onClick={handleToggle}
+      aria-label="Toggle theme"
+      className="hover:bg-muted/60 bg-background text-foreground inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
+      {effective === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
+      <span className="hidden sm:inline">
+        {theme === 'system' ? 'System' : theme === 'light' ? 'Light' : 'Dark'}
+      </span>
     </button>
   )
 }

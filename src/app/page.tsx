@@ -1,9 +1,10 @@
-import { Header } from '@/components/layout/Header';
-import { Hero } from '@/components/landing/Hero';
-import { CorePaths } from '@/components/landing/CorePaths';
-import { AiCoaches } from '@/components/landing/AiCoaches';
-import { Ecosystem } from '@/components/landing/Ecosystem';
-import { Pricing } from '@/components/landing/Pricing';
+// src/app/page.tsx
+import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/landing/Hero'
+import { CorePaths } from '@/components/landing/CorePaths'
+import { AiCoaches } from '@/components/landing/AiCoaches'
+import { Ecosystem } from '@/components/landing/Ecosystem'
+import { Pricing } from '@/components/landing/Pricing'
 
 /**
  * This is the main component for the homepage.
@@ -12,8 +13,7 @@ import { Pricing } from '@/components/landing/Pricing';
  */
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      
+    <div className="bg-background flex min-h-screen flex-col">
       {/* The main header component for site navigation */}
       <Header />
 
@@ -29,5 +29,5 @@ export default function LandingPage() {
       {/* A Footer component can be added here in the future */}
       {/* <Footer /> */}
     </div>
-  );
+  )
 }
