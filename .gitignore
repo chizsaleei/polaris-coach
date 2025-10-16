@@ -1,8 +1,17 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+.env.local
 
-############################
+# Keep example templates tracked
+!.env.example
+!.env*.example
+
+# =========================
 # Dependencies & package managers
-############################
+# =========================
 node_modules/
 .pnp/
 .pnp.*
@@ -12,9 +21,9 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-############################
+# =========================
 # Build outputs
-############################
+# =========================
 .next/
 out/
 build/
@@ -22,9 +31,9 @@ dist/
 .turbo/
 .swc/
 
-############################
+# =========================
 # Coverage & debug
-############################
+# =========================
 coverage/
 npm-debug.log*
 yarn-debug.log*
@@ -34,27 +43,21 @@ pnpm-debug.log*
 .eslintcache
 .stylelintcache
 
-############################
-# Env files
-# Keep example file tracked
-############################
-.env
-.env.*
-!.env.example
-
-############################
+# =========================
 # Tooling & local configs
-############################
+# =========================
 .vercel/
 *.tsbuildinfo
 next-env.d.ts
 
+# =========================
 # Editors and OS junk
+# =========================
 .DS_Store
 Thumbs.db
 *.pem
 
-# VS Code: ignore everything except common shared files
+# VS Code: ignore everything except shared files
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
