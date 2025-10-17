@@ -1,16 +1,24 @@
-import { supabaseServer } from "@/lib/supabaseServer";
-import { redirect } from "next/navigation";
+// src/app/auth/callback/page.tsx
+export const dynamic = 'force-dynamic'; // don't prerender this page
+export const revalidate = 0;
 
-export default async function CallbackPage() {
-  // Supabase handles session via cookies on redirect
-  const supabase = supabaseServer();
-  const { data: { user } } = await supabase.auth.getUser();
+import { redirect } from 'next/navigation';
+import { supabaseServer } from '@/lib/supabaseServer';
 
-  // Ensure profile exists (trigger already created it)
-  if (user?.id) {
-    // optional: hydrate minimal prefs row if missing
-    await supabase.from("user_preferences").upsert({ user_id: user.id }).select().single();
+export default async function AuthCallbackPage() {
+  // Always create the server client per request
+  const supabase = await supabaseServer();
+
+  try {
+    // If this throws in weird environments, we still don't want build to fail
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // Send users where you want them after email magic link / OAuth callback
+    return redirect(user ? '/dashboard' : '/auth/signin');
+  } catch {
+    // If something goes wrong, fail-safe to sign-in page
+    return redirect('/auth/signin');
   }
-
-  redirect("/dashboard");
 }
