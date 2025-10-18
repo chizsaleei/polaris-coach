@@ -2,11 +2,15 @@
 
 import { supabaseBrowser } from "./supabaseBrowser";
 
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || // Vercel: https://chizsaleei.com
+  (typeof window !== "undefined" ? window.location.origin : "http://localhost:3000");
+
 export async function signInWithEmailOtp(email: string, redirectTo?: string) {
   const supabase = supabaseBrowser();
   return supabase.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: redirectTo ?? `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback` },
+    options: { emailRedirectTo: redirectTo ?? `${APP_URL}/auth/callback` },
   });
 }
 
