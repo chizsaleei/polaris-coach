@@ -6,13 +6,13 @@ const config: Config = {
   content: [
     "./src/app/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}"
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
       center: true,
       padding: "1rem",
-      screens: { "2xl": "1100px" }
+      screens: { "2xl": "1100px" },
     },
     extend: {
       colors: {
@@ -24,40 +24,40 @@ const config: Config = {
 
         primary: {
           DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))"
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))"
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))"
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))"
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))"
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))"
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))"
-        }
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)"
+        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        // matches Inter({ variable: "--font-inter" }) in layout.tsx
+        // Matches Inter({ variable: "--font-inter" }) in layout.tsx
         sans: [
           "var(--font-inter)",
           "ui-sans-serif",
@@ -69,12 +69,12 @@ const config: Config = {
           "Noto Sans",
           "Apple Color Emoji",
           "Segoe UI Emoji",
-          "Segoe UI Symbol"
-        ]
-      }
-    }
+          "Segoe UI Symbol",
+        ],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;
